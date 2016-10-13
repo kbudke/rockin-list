@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head class="bioRhyme">
+    <title>RockNRoll</title>
+    <%= csrf_meta_tags %>
+ 
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+
+  <body class="bioRhyme">
+
+ <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand"><%= image_tag "rock-logo.png" %>Kyle's Top Hits</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                	<% if current_page?(root_path) %>
+                  <li class="active">
+                  	<% else %>
+                  	<li>
+                  		<% end %>
+                  	<%= link_to 'Top 5',  root_path %>
+                  </li>
+                	<% if current_page?(artists_path) %>
+                  <li class="active">
+                  	<% else %>
+                  	<li>
+                  		<% end %>
+                  	<%= link_to 'Artists',  artists_path %>
+                  </li>
+                	<% if current_page?(songs_path) %>
+                  <li class="active">
+                  	<% else %>
+                  	<li>
+                  		<% end %>
+                  	<%= link_to 'Songs',  songs_path %>
+                  </li>
+
+
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+     			  <%= yield %>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p class="bioRhyme">Kyle's Rocking Productions, &copy; 2016</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  
+  </body>
+</html>

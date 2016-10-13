@@ -1,0 +1,35 @@
+<body class="bioRhyme">
+TOP 5 SONGS
+
+<div class="row">
+  <% @songs.each_with_index do |song, index| %>
+    <% if index == 4 %>
+      <div class="col-md-6 col-md-offset-3">
+    <% else %>
+      <div class="col-md-6">
+    <% end %>
+      <div class="well">
+        <h3><%= link_to song.name, song %></h3>
+        <p>by <%= link_to song.artist.name, song.artist %></p>
+        <p>
+          <% song.rating.times do %>
+            <i class="glyphicon glyphicon-star yellow-star"></i>
+          <% end %>
+          <% (10 - song.rating).times do %>
+            <i class="glyphicon glyphicon-star"></i>
+          <% end %>
+        </p>
+        <p>
+          <%= link_to edit_song_path(song) do %>
+            <i class="glyphicon glyphicon-pencil"></i>
+          <% end %>&nbsp;
+          <%= link_to song, method: :delete, data: { confirm: 'Are you Positive?' } do %>
+            <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+</body>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<body class="bioRhyme">
+<h1>Artists</h1>
+
+<%= link_to new_artist_path do %>
+  <i class="glyphicon glyphicon-plus add-icon"></i> Add
+<% end %>
+
+<div class="row">
+  <% @artists.each do |artist| %>
+    <div class="col-md-6">
+      <div class="well">
+        <p>
+          <% if !artist.image.nil? %>
+            <%= image_tag artist.image.url, class: "artist-index-pic" %>
+          <% end %>
+        </p>
+        <h3><%= link_to artist.name, artist %></h3>
+        <p>
+          <%= link_to edit_artist_path(artist) do %>
+            <i class="glyphicon glyphicon-pencil"></i>
+          <% end %>&nbsp;
+          <%= link_to artist, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <i class="glyphicon glyphicon-trash"></i>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  <% end %>
+</div>
+</body>

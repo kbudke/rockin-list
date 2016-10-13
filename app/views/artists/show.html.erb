@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<div class="well artist-index-well">
+			<h2>
+			  <%= @artist.name %>
+			</h2>
+
+			<p>
+				<%= image_tag @artist.image.url, class: "artist-show-pic" %>
+			</p>
+
+			<p>
+				<% @artist.songs.each_with_index do |song, index| %>
+					<% if index < (@artist.songs.length - 1) %>
+						<%= link_to song.name, song %>, 
+					<% else %>
+						<%= link_to song.name, song %>
+					<% end %>
+				<% end %>
+			</p>
+
+			<p id="add_song_by_artist">
+				<i class="glyphicon glyphicon-music"></i> Add New Song By Artist
+			</p>
+
+			<div class="invisible" id="song_by_artist_form">
+				<%= render 'songs/form', song: @song %>
+			</div>
+
+			<p>
+				<%= link_to edit_artist_path(@artist) do %>
+					<i class="glyphicon glyphicon-pencil"></i>
+				<% end %>&nbsp;
+	      <%= link_to @artist, method: :delete, data: { confirm: 'Are you sure?' } do %>
+	        <i class="glyphicon glyphicon-trash"></i>
+	      <% end %>
+	    </p>
+	  </div>
+	</div>
+</div>
